@@ -1,0 +1,3 @@
+class AppImage {}
+
+class AppAnimation {}
