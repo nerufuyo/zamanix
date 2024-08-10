@@ -12,7 +12,12 @@
           "package_name": "com.example.zamanix"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "769792665766-g71660fmj1mb38ug0bpg3554cclct8lp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDqdDyDqHdI9XG7J9T39F3VyoatOD0pQdM"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769792665766-g71660fmj1mb38ug0bpg3554cclct8lp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769792665766-n630j27b9qc5c83licdupavnto0rg18s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.zamanix"
+              }
+            }
+          ]
         }
       }
     }

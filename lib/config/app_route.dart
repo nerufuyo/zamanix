@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zamanix/presentation/authentication/authentication_screen.dart';
 import 'package:zamanix/presentation/empty/empty_screen.dart';
 import 'package:zamanix/presentation/splash/splash_screen.dart';
 
@@ -12,9 +13,23 @@ class AppRoute {
     switch (settings.name) {
       case splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case auth:
+        return MaterialPageRoute(builder: (_) => const AuthenticationScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => EmptyScreen());
     }
+  }
+
+  static void navigateTo(
+    BuildContext context,
+    String route, {
+    Object? arguments,
+  }) {
+    Navigator.pushNamed(
+      context,
+      route,
+      arguments: arguments,
+    );
   }
 }

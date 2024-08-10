@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color primary = Color(0xFF98FF98);
-  static const Color secondary = Color(0xFF001F54);
-  static const Color accent = Color(0xFFFF6F61);
-
-  static const Color backgroundLight = Color(0xFFFFFFFF);
-  static const Color backgroundDark = Color(0xFF0A0A23);
-
+  static const Color primary = Color(0xFF000000);
+  static const Color secondary = Color(0xFF2C2C2C);
+  static const Color accent = Color(0xFF4A4A4A);
+  static const Color highlight = Color(0xFFC0C0C0);
+  static const Color backgroundLight = Color(0xFFF5F5F5);
+  static const Color backgroundDark = Color(0xFF121212);
   static const Color textLight = Color(0xFF2D2D2D);
-  static const Color textDark = Color(0xFFDFFFD6);
+  static const Color textDark = Color(0xFFE0E0E0);
 
   static const Color transparent = Colors.transparent;
+
+  static const Color error = Color(0xFFD32F2F);
+  static const Color warning = Color(0xFFFFA000);
+  static const Color info = Color(0xFF1976D2);
+  static const Color success = Color(0xFF388E3C);
 }
 
 class AppFontSize {
