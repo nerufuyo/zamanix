@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             if (state is AuthenticationSuccess) {
               Future.delayed(
                 const Duration(seconds: 3),
-                () => AppRoute.navigateTo(context, AppRoute.home),
+                () => AppRoute.navigateTo(context, AppRoute.dashboard),
               );
             }
           },

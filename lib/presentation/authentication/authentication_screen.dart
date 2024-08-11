@@ -51,7 +51,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   if (!isRegister) {
-                    AppRoute.navigateTo(context, AppRoute.home);
+                    AppRoute.navigateTo(context, AppRoute.dashboard);
                   }
                   setState(() => isRegister = false);
                 },
@@ -93,7 +93,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 Visibility(
                   visible: MediaQuery.of(context).viewInsets.bottom == 0,
                   child: Image.asset(
-                    AppImage.logo,
+                    AppImage.appLogo,
                     width: MediaQuery.sizeOf(context).width * .75,
                   ),
                 ),

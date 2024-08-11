@@ -28,8 +28,7 @@ initializeFirebase() async {
 
 void injectDependency() {
   getIt
-    ..registerSingleton<AuthenticationRepository>(
-      AuthenticationRepositoryImpl(),
-    )
+    ..registerFactory<AuthenticationRepository>(
+        () => AuthenticationRepositoryImpl())
     ..registerFactory(() => AuthenticationBloc(getIt()));
 }
