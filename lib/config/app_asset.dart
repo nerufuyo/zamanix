@@ -21,6 +21,12 @@ class AppImage {
       'assets/images/app_notification_logo.png';
   static const String appNotificationFillLogo =
       'assets/images/app_notification_fill_logo.png';
+  static const String appClockInHourLogo =
+      'assets/images/app_clock_in_hour_logo.png';
+  static const String appClockOutHourLogo =
+      'assets/images/app_clock_out_hour_logo.png';
+  static const String appClockTotalHourLogo =
+      'assets/images/app_clock_hour_total_logo.png';
 }
 
 class AppAnimation {

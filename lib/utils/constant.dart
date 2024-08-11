@@ -28,3 +28,18 @@ final List bottomNavItems = [
     'clickedLogo': AppImage.appProfileClickedLogo,
   },
 ];
+
+final clockItems = [
+  {
+    'label': 'Clock In',
+    'logo': AppImage.appClockInHourLogo,
+  },
+  {
+    'label': 'Clock Out',
+    'logo': AppImage.appClockOutHourLogo,
+  },
+  {
+    'label': 'Total Hour',
+    'logo': AppImage.appClockTotalHourLogo,
+  },
+];
