@@ -6,6 +6,7 @@ import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/inject_dependencies.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
 import 'package:zamanix/presentation/home/bloc/location/location_bloc.dart';
+import 'package:zamanix/presentation/home/bloc/timezone/timezone_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => getIt<LocationBloc>()..add(GetLocation())),
+        BlocProvider(create: (context) => getIt<TimezoneBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zamanix/config/app_asset.dart';
+import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/config/app_theme.dart';
+import 'package:zamanix/presentation/home/bloc/timezone/timezone_bloc.dart';
 import 'package:zamanix/presentation/home/widgets/header_widget.dart';
+import 'package:zamanix/presentation/home/widgets/time_widget.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 import 'package:zamanix/utils/timezone.dart';
 
@@ -15,6 +19,14 @@ class HomeWidget extends StatefulWidget {
 class _HomeWidgetState extends State<HomeWidget> {
   bool isClockIn = false;
   bool isNotificationFilled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<TimezoneBloc>()
+        .add(const GetTimezone(country: AppConfig.appRegion));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              children: List.generate(
-                2,
-                (index) => Text(
-                  index == 0
-                      ? Timezone.getRealTime('Jakarta')
-                      : Timezone.getRealDate(),
-                  style: index == 0 ? AppTextStyle.h1 : AppTextStyle.body1,
-                ),
-              ),
-            ),
+            const TimeWidget(),
             IconButton(
               onPressed: () => setState(() => isClockIn = !isClockIn),
               splashRadius: MediaQuery.sizeOf(context).width * 0.325,
@@ -56,7 +58,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                     BoxShadow(
                       color: isClockIn
                           ? AppColor.error.withOpacity(.4)
-                          : AppColor.success.withOpacity(.4),
+                          : const Color.fromARGB(255, 246, 254, 246)
+                              .withOpacity(.4),
                       blurRadius: 8,
                       spreadRadius: 2,
                       offset: const Offset(0 - 4, 16),
