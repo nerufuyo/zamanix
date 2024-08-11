@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension GapWidget on List<Widget> {
+extension SpacingList on List<Widget> {
   List<Widget> withSpacing(
     double spacing, {
     bool isVertical = true,

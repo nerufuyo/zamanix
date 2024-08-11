@@ -1,8 +1,11 @@
 class ValidationCheck {
   static String? checkEmail(String email) {
+    final emailRegex =
+        RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+
     if (email.isEmpty) {
       return 'Email is required';
-    } else if (!email.contains('@')) {
+    } else if (!emailRegex.hasMatch(email)) {
       return 'Invalid email format';
     } else if (email.contains(' ')) {
       return 'Email should not contain spaces';
@@ -36,8 +39,6 @@ class ValidationCheck {
   static String? checkFullName(String fullName) {
     if (fullName.isEmpty) {
       return 'Full name is required';
-    } else if (fullName.contains(' ')) {
-      return 'Full name should not contain spaces';
     }
 
     return null;

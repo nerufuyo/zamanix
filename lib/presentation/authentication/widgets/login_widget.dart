@@ -14,9 +14,9 @@ class LoginWidget extends StatelessWidget {
         .where((item) => item == 'Email' || item == 'Password')
         .toList();
 
-    // Create a list of TextEditingController based on the filteredAuthItems
-    final List<TextEditingController> controllers =
-        filteredAuthItems.map((item) => TextEditingController()).toList();
+    // Use controllers from index 1 and onwards
+    final List<TextEditingController> relevantControllers =
+        controller.skip(1).toList();
 
     return ListView.separated(
       shrinkWrap: true,
@@ -24,10 +24,13 @@ class LoginWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: filteredAuthItems.length,
       itemBuilder: (context, index) => TextFormField(
-        controller: controllers[index],
+        controller: relevantControllers[index],
         decoration: InputDecoration(
-          errorStyle: AppTextStyle.body1.copyWith(color: AppColor.error),
+          errorStyle: AppTextStyle.body3.copyWith(color: AppColor.error),
           labelText: filteredAuthItems[index],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),

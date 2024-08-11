@@ -17,8 +17,11 @@ class RegisterWidget extends StatelessWidget {
       itemBuilder: (context, index) => TextFormField(
         controller: controller[index],
         decoration: InputDecoration(
-          errorStyle: AppTextStyle.body1.copyWith(color: AppColor.error),
+          errorStyle: AppTextStyle.body3.copyWith(color: AppColor.error),
           labelText: authItems[index],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),

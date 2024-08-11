@@ -1,7 +1,1 @@
-final List authItems = [
-  'Full Name',
-  'Username',
-  'Email',
-  'Password',
-  'Confirm Password'
-];
+final List authItems = ['Full Name', 'Email', 'Password', 'Confirm Password'];

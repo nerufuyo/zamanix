@@ -14,6 +14,11 @@ dependencies:
   flutter_bloc: ^8.1.6
   lottie: ^2.7.0
   firebase_auth: ^4.16.0
+  get_it: ^7.6.7
+  equatable: ^2.0.5
+  cloud_firestore: ^4.14.0
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:

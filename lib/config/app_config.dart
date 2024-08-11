@@ -5,3 +5,7 @@ class AppConfig {
   static const String appPackage = 'com.zamanix';
   static const String appCopyRight = 'CopyRight © 2024 Zamanix';
 }
+
+class AppDatabaseCollections {
+  static const String users = 'users';
+}
