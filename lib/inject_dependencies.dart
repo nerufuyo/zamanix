@@ -14,7 +14,7 @@ final FirebaseFirestore db = FirebaseFirestore.instance;
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 final LocalStorage localStorage = LocalStorage();
 
-void setup() async {
+Future<void> setup() async {
   await _initializeFirebase();
   _injectDependency();
 }
@@ -36,5 +36,6 @@ void _injectDependency() {
   getIt
     ..registerLazySingleton<AuthenticationRepository>(
         () => AuthenticationRepositoryImpl())
-    ..registerFactory(() => AuthenticationBloc(getIt()));
+    ..registerFactory(
+        () => AuthenticationBloc(getIt<AuthenticationRepository>()));
 }

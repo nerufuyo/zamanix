@@ -8,7 +8,7 @@ import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dar
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
+  await setup();
   runApp(const MyApp());
 }
 
