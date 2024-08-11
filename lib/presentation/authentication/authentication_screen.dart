@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zamanix/config/app_asset.dart';
@@ -10,6 +12,7 @@ import 'package:zamanix/presentation/authentication/widgets/option_widget.dart';
 import 'package:zamanix/presentation/authentication/widgets/register_widget.dart';
 import 'package:zamanix/utils/constant.dart';
 import 'package:zamanix/utils/popup_dialog.dart';
+import 'package:zamanix/utils/secure_storage.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
 class AuthenticationScreen extends StatefulWidget {
@@ -29,6 +32,22 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   bool isRegister = false;
   bool isRememberMe = false;
 
+  void _loadRememberMe() {
+    SecureStorage().readSecureDataList('remember_me').then(
+      (value) {
+        _controllers[1].text = value[0];
+        _controllers[2].text = value[1];
+        setState(() => isRememberMe = true);
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRememberMe();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -36,6 +55,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
       child: Scaffold(
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {
+            if (state is AuthenticationInitial) {
+              PopUpDialog.closeDialog(context);
+            }
+
             if (state is AuthenticationLoading) {
               PopUpDialog.showAnimatedPopUpDialog(
                 context,
@@ -45,15 +68,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             }
 
             if (state is AuthenticationSuccess) {
+              PopUpDialog.closeDialog(context);
               Future.delayed(
-                const Duration(seconds: 2),
+                const Duration(seconds: 3),
                 () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
+                  PopUpDialog.closeDialog(context);
                   if (!isRegister) {
+                    isRememberMe
+                        ? SecureStorage().writeSecureDataList(
+                            'remember_me',
+                            [_controllers[1].text, _controllers[2].text],
+                          )
+                        : SecureStorage().deleteSecureData('remember_me');
+
                     AppRoute.navigateTo(context, AppRoute.dashboard);
+                  } else {
+                    setState(() => isRegister = false);
                   }
-                  setState(() => isRegister = false);
                 },
               );
               PopUpDialog.showAnimatedPopUpDialog(
@@ -62,13 +93,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 isRegister ? 'Registration successful!' : 'Login successful!',
               );
             }
+
             if (state is AuthenticationFailure) {
+              PopUpDialog.closeDialog(context);
               Future.delayed(
                 const Duration(seconds: 2),
-                () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                },
+                () => PopUpDialog.closeDialog(context),
               );
               PopUpDialog.showAnimatedPopUpDialog(
                 context,
@@ -108,8 +138,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       OptionWidget(
                         isRegister: isRegister,
                         isRememberMeValue: isRememberMe,
-                        isRememberMe: (value) =>
-                            setState(() => isRememberMe = value),
+                        isRememberMe: (value) => setState(
+                          () {
+                            isRememberMe = value;
+                            log('Remember Me: $isRememberMe');
+                          },
+                        ),
                       ),
                       ElevatedButton(
                         onPressed: () {

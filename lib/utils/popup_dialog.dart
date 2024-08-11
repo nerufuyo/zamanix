@@ -4,11 +4,16 @@ import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
 class PopUpDialog {
+  static bool _isDialogShowing = false;
+
   static void showAnimatedPopUpDialog(
     BuildContext context,
     String lottieAsset,
     String message,
   ) {
+    if (_isDialogShowing) return;
+
+    _isDialogShowing = true;
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -38,6 +43,15 @@ class PopUpDialog {
           ),
         ),
       ),
-    );
+    ).then((_) {
+      _isDialogShowing = false;
+    });
+  }
+
+  static void closeDialog(BuildContext context) {
+    if (_isDialogShowing) {
+      Navigator.of(context).pop();
+      _isDialogShowing = false;
+    }
   }
 }

@@ -6,29 +6,35 @@ import 'package:get_it/get_it.dart';
 import 'package:zamanix/firebase_options.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
 import 'package:zamanix/repositories/authentication_repository.dart';
+import 'package:zamanix/utils/local_storage.dart';
 
 final GetIt getIt = GetIt.instance;
 final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 final FirebaseFirestore db = FirebaseFirestore.instance;
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+final LocalStorage localStorage = LocalStorage();
 
 void setup() async {
-  await initializeFirebase();
-  injectDependency();
+  await _initializeFirebase();
+  _injectDependency();
 }
 
-initializeFirebase() async {
+Future<void> _initializeFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  getIt.registerSingleton<FirebaseAuth>(firebaseAuth);
-  getIt.registerSingleton<FirebaseFirestore>(db);
-  getIt.registerSingleton<FlutterSecureStorage>(secureStorage);
+
+  // Register Firebase services as singletons
+  getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
+  getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
+  getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
+  getIt.registerSingleton<LocalStorage>(LocalStorage());
 }
 
-void injectDependency() {
+void _injectDependency() {
+  // Register repositories and blocs
   getIt
-    ..registerFactory<AuthenticationRepository>(
+    ..registerLazySingleton<AuthenticationRepository>(
         () => AuthenticationRepositoryImpl())
     ..registerFactory(() => AuthenticationBloc(getIt()));
 }

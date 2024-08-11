@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class EmployeeWidget extends StatelessWidget {
+  const EmployeeWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Employee Screen'),
-      ),
+    return const Center(
+      child: Text('Employee Screen'),
     );
   }
 }

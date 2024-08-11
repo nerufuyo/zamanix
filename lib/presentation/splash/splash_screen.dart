@@ -16,7 +16,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    _checkAuthentication();
+  }
+
+  void _checkAuthentication() async {
     BlocProvider.of<AuthenticationBloc>(context).add(CheckAuthentication());
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        final state = BlocProvider.of<AuthenticationBloc>(context).state;
+        bool isAuth = state is AuthenticationAuthenticated;
+
+        if (isAuth) {
+          AppRoute.navigateTo(context, AppRoute.dashboard);
+        } else {
+          AppRoute.navigateTo(context, AppRoute.auth);
+        }
+      },
+    );
   }
 
   @override
@@ -24,28 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            if (state is AuthenticationInitial) {
-              Future.delayed(
-                const Duration(seconds: 3),
-                () => AppRoute.navigateTo(context, AppRoute.auth),
-              );
-            }
-
-            if (state is AuthenticationSuccess) {
-              Future.delayed(
-                const Duration(seconds: 3),
-                () => AppRoute.navigateTo(context, AppRoute.dashboard),
-              );
-            }
-          },
-          child: Center(
-            child: LottieBuilder.asset(
-              AppAnimation.appLogoAnimation,
-              width: MediaQuery.of(context).size.width * .75,
-              frameRate: FrameRate.max,
-            ),
+        body: Center(
+          child: LottieBuilder.asset(
+            AppAnimation.appLogoAnimation,
+            width: MediaQuery.of(context).size.width * .75,
+            frameRate: FrameRate.max,
           ),
         ),
       ),

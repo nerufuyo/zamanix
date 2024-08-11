@@ -23,4 +23,13 @@ class SecureStorage {
     await _storage.delete(key: key);
     await _storage.write(key: key, value: value);
   }
+
+  Future<void> writeSecureDataList(String key, List<String> value) async {
+    await _storage.write(key: key, value: value.join(','));
+  }
+
+  Future<List<String>> readSecureDataList(String key) async {
+    final String? value = await _storage.read(key: key);
+    return value!.split(',');
+  }
 }

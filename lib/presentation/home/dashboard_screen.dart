@@ -18,10 +18,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> widgetOptions = <Widget>[
     const HomeWidget(),
-    EmployeeWidget(),
+    const EmployeeWidget(),
     const RequestWidget(),
-    AttendanceWidget(),
-    ProfileWidget(),
+    const AttendanceWidget(),
+    const ProfileWidget(),
   ];
 
   @override

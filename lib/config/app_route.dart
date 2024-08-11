@@ -20,7 +20,7 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => const DashboardScreen());
 
       default:
-        return MaterialPageRoute(builder: (_) => EmptyScreen());
+        return MaterialPageRoute(builder: (_) => const EmptyScreen());
     }
   }
 
