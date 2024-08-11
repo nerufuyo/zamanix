@@ -4,6 +4,9 @@ class AppConfig {
   static const String appBuildNumber = '1';
   static const String appPackage = 'com.zamanix';
   static const String appCopyRight = 'CopyRight © 2024 Zamanix';
+  static const String appDescription = 'Zamanix is a attendance app';
+  static const String appPrivacyPolicy = 'Privacy Policy';
+  static const String appRegion = 'ID';
 }
 
 class AppDatabaseCollections {

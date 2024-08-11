@@ -16,6 +16,11 @@ class AppImage {
       'assets/images/app_attendance_logo.png';
   static const String appAttendanceClickedLogo =
       'assets/images/app_attendance_clicked_logo.png';
+  static const String appClockInLogo = 'assets/images/app_clock_in_logo.png';
+  static const String appNotificationLogo =
+      'assets/images/app_notification_logo.png';
+  static const String appNotificationFillLogo =
+      'assets/images/app_notification_fill_logo.png';
 }
 
 class AppAnimation {
