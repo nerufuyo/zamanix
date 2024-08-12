@@ -8,6 +8,7 @@ import 'package:zamanix/presentation/home/widgets/home/attendance_button_widget.
 import 'package:zamanix/presentation/home/widgets/home/attendance_status_hour_widget.dart';
 import 'package:zamanix/presentation/home/widgets/dot_widget.dart';
 import 'package:zamanix/presentation/home/widgets/header_widget.dart';
+import 'package:zamanix/presentation/home/widgets/home/time_shift_widget.dart';
 import 'package:zamanix/presentation/home/widgets/home/time_widget.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
@@ -99,6 +100,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TimeWidget(),
+                    const TimeShiftWidget(),
                     AttendanceButtonWidget(
                       isClockIn: isClockIn,
                       isClockInAction: () => setState(
@@ -106,7 +108,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           isClockIn = !isClockIn;
                           AppRoute.navigateTo(
                             context,
-                            AppRoute.verificationMap,
+                            AppRoute.attendanceVerification,
                           );
                         },
                       ),

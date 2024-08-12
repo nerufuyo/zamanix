@@ -46,3 +46,10 @@ app.*.map.json
 # Firebase
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+## API KEY
+.env
+
+# .gitignore
+android/gradle.properties
+Runner/Config.plist

@@ -23,6 +23,8 @@ dependencies:
   geolocator: ^11.1.0
   geocoding: ^3.0.0
   timezone: ^0.9.4
+  google_maps_flutter: ^2.5.3
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
