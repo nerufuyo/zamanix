@@ -30,13 +30,13 @@ class BottomNavigationWidget extends StatelessWidget {
           backgroundColor: AppColor.transparent,
           icon: Image.asset(
             bottomNavItems[index]['logo'],
-            width: 24,
-            height: 24,
+            width: 20,
+            height: 20,
           ),
           activeIcon: Image.asset(
             bottomNavItems[index]['clickedLogo'],
-            width: 24,
-            height: 24,
+            width: 20,
+            height: 20,
           ),
           label: bottomNavItems[index]['label'],
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zamanix/presentation/home/widgets/attendance_widget.dart';
+import 'package:zamanix/presentation/home/widgets/home/attendance_widget.dart';
 import 'package:zamanix/presentation/home/widgets/bottom_navigation_widget.dart';
 import 'package:zamanix/presentation/home/widgets/employee_widget.dart';
 import 'package:zamanix/presentation/home/widgets/home_widget.dart';

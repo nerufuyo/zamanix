@@ -6,7 +6,7 @@ class AppConfig {
   static const String appCopyRight = 'CopyRight © 2024 Zamanix';
   static const String appDescription = 'Zamanix is a attendance app';
   static const String appPrivacyPolicy = 'Privacy Policy';
-  static const String appRegion = 'ID';
+  static const String appRegion = 'Asia/Jakarta';
 }
 
 class AppDatabaseCollections {
