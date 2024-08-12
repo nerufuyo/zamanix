@@ -53,3 +53,16 @@ ios/Runner/GoogleService-Info.plist
 # .gitignore
 android/gradle.properties
 Runner/Config.plist
+
+# Ignore build.gradle files
+android/build.gradle
+android/app/build.gradle
+
+# Ignore Info.plist files
+ios/Runner/Info.plist
+
+# Ignore all build.gradle files
+**/build.gradle
+
+# Ignore all Info.plist files
+**/Info.plist
