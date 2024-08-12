@@ -59,10 +59,10 @@ android/build.gradle
 android/app/build.gradle
 
 # Ignore Info.plist files
-ios/Runner/Info.plist
+ios/Runner/Config.plist
 
 # Ignore all build.gradle files
 **/build.gradle
 
 # Ignore all Info.plist files
-**/Info.plist
+**/Config.plist
