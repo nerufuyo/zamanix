@@ -47,22 +47,8 @@ app.*.map.json
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 
-## API KEY
-.env
+# Ignore iOS Google Maps API Key
+ios/Runner/GoogleMapsAPIKey.plist
 
-# .gitignore
-android/gradle.properties
-Runner/Config.plist
-
-# Ignore build.gradle files
-android/build.gradle
-android/app/build.gradle
-
-# Ignore Info.plist files
-ios/Runner/Config.plist
-
-# Ignore all build.gradle files
-**/build.gradle
-
-# Ignore all Info.plist files
-**/Config.plist
+# Ignore Android Google Maps API Key
+android/app/src/main/res/values/google_maps_api_key.xml

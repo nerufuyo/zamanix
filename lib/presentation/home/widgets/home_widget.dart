@@ -82,10 +82,9 @@ class _HomeWidgetState extends State<HomeWidget> {
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height,
             padding: EdgeInsets.only(
-              top: MediaQuery.sizeOf(context).height * 0.075,
+              top: MediaQuery.sizeOf(context).height * 0.07,
               left: 16,
               right: 16,
-              bottom: 16,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
