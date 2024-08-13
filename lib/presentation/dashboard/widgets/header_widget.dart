@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/presentation/home/bloc/location/location_bloc.dart';
+import 'package:zamanix/presentation/dashboard/bloc/location/location_bloc.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
 class HeaderWidget extends StatelessWidget {

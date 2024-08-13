@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/presentation/home/widgets/verification/refresh_button_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/verification/refresh_button_widget.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
 class AttendanceVerificationScreen extends StatefulWidget {

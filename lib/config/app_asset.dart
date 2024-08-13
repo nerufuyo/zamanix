@@ -28,6 +28,11 @@ class AppImage {
   static const String appClockTotalHourLogo =
       'assets/images/app_clock_hour_total_logo.png';
   static const String appRefreshLogo = 'assets/images/app_refresh_logo.png';
+  static const String appFemaleProfilePicture =
+      'assets/images/app_female_profile_picture.jpg';
+  static const String appMaleProfilePicture =
+      'assets/images/app_male_profile_picture.jpg';
+  static const String appCameraLogo = 'assets/images/app_camera_logo.png';
 }
 
 class AppAnimation {

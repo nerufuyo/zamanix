@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/presentation/home/bloc/timezone/timezone_bloc.dart';
+import 'package:zamanix/presentation/dashboard/bloc/timezone/timezone_bloc.dart';
 
 class TimeWidget extends StatelessWidget {
   const TimeWidget({

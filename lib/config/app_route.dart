@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/presentation/authentication/authentication_screen.dart';
+import 'package:zamanix/presentation/dashboard/attendance_verification_screen.dart';
+import 'package:zamanix/presentation/dashboard/dashboard_screen.dart';
 import 'package:zamanix/presentation/empty/empty_screen.dart';
-import 'package:zamanix/presentation/home/attendance_verification_screen.dart';
-import 'package:zamanix/presentation/home/dashboard_screen.dart';
 import 'package:zamanix/presentation/splash/splash_screen.dart';
 
 class AppRoute {

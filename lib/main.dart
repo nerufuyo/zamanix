@@ -5,8 +5,8 @@ import 'package:zamanix/config/app_route.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/inject_dependencies.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
-import 'package:zamanix/presentation/home/bloc/location/location_bloc.dart';
-import 'package:zamanix/presentation/home/bloc/timezone/timezone_bloc.dart';
+import 'package:zamanix/presentation/dashboard/bloc/location/location_bloc.dart';
+import 'package:zamanix/presentation/dashboard/bloc/timezone/timezone_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

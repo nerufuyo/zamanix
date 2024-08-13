@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:zamanix/presentation/home/widgets/home/attendance_widget.dart';
-import 'package:zamanix/presentation/home/widgets/bottom_navigation_widget.dart';
-import 'package:zamanix/presentation/home/widgets/employee_widget.dart';
-import 'package:zamanix/presentation/home/widgets/home_widget.dart';
-import 'package:zamanix/presentation/home/widgets/profile_widget.dart';
-import 'package:zamanix/presentation/home/widgets/request_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/bottom_navigation_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/employee_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/home/attendance_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/home_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/profile_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/request_widget.dart';
+import 'package:zamanix/utils/dot_background.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -29,7 +30,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: widgetOptions.elementAt(selectedIndex),
+        body: Stack(
+          children: [
+            const DotBackground(),
+            widgetOptions.elementAt(selectedIndex),
+          ],
+        ),
         bottomNavigationBar: BottomNavigationWidget(
           selectedIndex: selectedIndex,
           onItemTapped: (value) => setState(() => selectedIndex = value),
