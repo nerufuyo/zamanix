@@ -27,6 +27,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   google_maps_flutter_android: ^2.8.0
   google_maps_flutter_ios: ^2.3.6
+  skeletonizer: ^1.0.1
 
 dev_dependencies:
   flutter_test:

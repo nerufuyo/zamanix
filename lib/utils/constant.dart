@@ -43,3 +43,37 @@ final clockItems = [
     'logo': AppImage.appClockTotalHourLogo,
   },
 ];
+
+final profileItemMenus = [
+  {
+    'icon': AppImage.appEmploymentLogo,
+    'label': 'Employment Information',
+  },
+  {
+    'icon': AppImage.appPayrollLogo,
+    'label': 'Payroll Information',
+  },
+  {
+    'icon': AppImage.appWorkExperienceLogo,
+    'label': 'Work Experience',
+  },
+  {
+    'icon': AppImage.appFamilyLogo,
+    'label': 'Family Information',
+  },
+  {
+    'icon': AppImage.appEmergencyContactLogo,
+    'label': 'Emergency Contact',
+  },
+];
+
+final optionItemMenus = [
+  {
+    'icon': AppImage.appInfoLogo,
+    'label': 'App Information',
+  },
+  {
+    'icon': AppImage.appSignOutLogo,
+    'label': 'Sign Out',
+  },
+];

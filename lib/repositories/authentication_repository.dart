@@ -16,7 +16,6 @@ abstract class AuthenticationRepository {
   );
   Future<void> signOut();
   Future<bool> isSignedIn();
-  Future<UserModel> getUser();
 }
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -132,26 +131,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     } catch (e) {
       log('AUTH: IS SIGNED IN ERROR! | DETAIL: $e');
       return false;
-    }
-  }
-
-  @override
-  Future<UserModel> getUser() async {
-    try {
-      final currentUser = _firebaseAuth.currentUser;
-      if (currentUser != null) {
-        final DocumentSnapshot<Map<String, dynamic>> userDoc = await _db
-            .collection(AppDatabaseCollections.users)
-            .doc(currentUser.uid)
-            .get();
-        final UserModel userModel = UserModel.fromJson(userDoc.data()!);
-        return userModel;
-      } else {
-        throw Exception('No user found!');
-      }
-    } catch (e) {
-      log('AUTH: GET USER ERROR! | DETAIL: $e');
-      throw Exception(e);
     }
   }
 }

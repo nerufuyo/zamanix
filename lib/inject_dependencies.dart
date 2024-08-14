@@ -7,7 +7,9 @@ import 'package:zamanix/firebase_options.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
 import 'package:zamanix/presentation/dashboard/bloc/location/location_bloc.dart';
 import 'package:zamanix/presentation/dashboard/bloc/timezone/timezone_bloc.dart';
+import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
 import 'package:zamanix/repositories/authentication_repository.dart';
+import 'package:zamanix/repositories/user_repository.dart';
 import 'package:zamanix/utils/local_storage.dart';
 import 'package:zamanix/utils/location_service.dart';
 import 'package:zamanix/utils/timezone.dart';
@@ -43,8 +45,10 @@ void _injectDependency() {
         () => AuthenticationRepositoryImpl())
     ..registerLazySingleton<LocationService>(() => LocationService())
     ..registerLazySingleton<Timezone>(() => Timezone())
+    ..registerLazySingleton<UserRepository>(() => UserRepositoryImpl())
     ..registerFactory(
         () => AuthenticationBloc(getIt<AuthenticationRepository>()))
     ..registerFactory(() => LocationBloc(getIt<LocationService>()))
-    ..registerFactory(() => TimezoneBloc());
+    ..registerFactory(() => TimezoneBloc())
+    ..registerFactory(() => UserBloc(getIt<UserRepository>()));
 }
