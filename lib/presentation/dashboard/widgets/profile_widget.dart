@@ -5,6 +5,8 @@ import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/menu_information_app_widget.dart.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/profile_picture_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/profile/profile_quick_info_widget.dart';
+import 'package:zamanix/repositories/models/user_model.dart';
 import 'package:zamanix/utils/constant.dart';
 import 'package:zamanix/utils/spacing_list.dart';
 
@@ -55,32 +57,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ProfilePictureWidget(isMale: isMale),
-                  Column(
-                    children: [
-                      Text(
-                        userModel?.fullname ?? '',
-                        style: AppTextStyle.h5.copyWith(
-                          color: AppColor.textLight,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        userModel?.employment?.jobPosition ?? '',
-                        style: AppTextStyle.body2.copyWith(
-                          color: AppColor.textLight,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Edit Profile',
-                          style: AppTextStyle.body2.copyWith(
-                            color: AppColor.info,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  ProfileQuickInfoWidget(userModel: userModel),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
