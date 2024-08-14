@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/constant.dart';
+import 'package:zamanix/utils/app_constant.dart';
 
 class BottomNavigationWidget extends StatelessWidget {
   const BottomNavigationWidget({

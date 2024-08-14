@@ -4,7 +4,7 @@ import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/dashboard/bloc/location/location_bloc.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({

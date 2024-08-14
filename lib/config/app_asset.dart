@@ -33,6 +33,16 @@ class AppImage {
   static const String appMaleProfilePicture =
       'assets/images/app_male_profile_picture.jpg';
   static const String appCameraLogo = 'assets/images/app_camera_logo.png';
+  static const String appEmergencyContactLogo =
+      'assets/images/app_emergency_contact_logo.png';
+  static const String appEmploymentLogo =
+      'assets/images/app_employment_logo.png';
+  static const String appWorkExperienceLogo =
+      'assets/images/app_work_experience_logo.png';
+  static const String appFamilyLogo = 'assets/images/app_family_logo.png';
+  static const String appPayrollLogo = 'assets/images/app_payroll_logo.png';
+  static const String appInfoLogo = 'assets/images/app_info_logo.png';
+  static const String appSignOutLogo = 'assets/images/app_sign_out_logo.png';
 }
 
 class AppAnimation {
@@ -44,4 +54,8 @@ class AppAnimation {
       'assets/animations/app_success_animation.json';
   static const String appFailureAnimation =
       'assets/animations/app_failure_animation.json';
+  static const String appWarningAnimation =
+      'assets/animations/app_warning_animation.json';
+  static const String appMaintenanceAnimation =
+      'assets/animations/app_maintenance_animation.json';
 }

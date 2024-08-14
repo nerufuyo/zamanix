@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:zamanix/utils/timezone.dart';
+import 'package:zamanix/utils/app_timezone.dart';
 
 part 'timezone_event.dart';
 part 'timezone_state.dart';
@@ -21,8 +21,8 @@ class TimezoneBloc extends Bloc<TimezoneEvent, TimezoneState> {
     emit(TimezoneLoading());
 
     try {
-      final String time = Timezone.getRealTime(event.country);
-      final String date = Timezone.getRealDate();
+      final String time = AppTimezone.getRealTime(event.country);
+      final String date = AppTimezone.getRealDate();
       emit(TimezoneLoaded(time: time, date: date, country: event.country));
     } catch (e) {
       emit(TimezoneError(message: e.toString()));

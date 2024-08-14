@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/validation_check.dart';
+import 'package:zamanix/utils/app_constant.dart';
+import 'package:zamanix/utils/app_validation_check.dart';
 
 class RegisterWidget extends StatelessWidget {
   final List<TextEditingController> controller;
@@ -40,15 +40,15 @@ class RegisterWidget extends StatelessWidget {
         validator: (value) {
           switch (authItems[index]) {
             case 'Full Name':
-              return ValidationCheck.checkFullName(value!);
+              return AppValidationCheck.checkFullName(value!);
             case 'Username':
-              return ValidationCheck.checkUsername(value!);
+              return AppValidationCheck.checkUsername(value!);
             case 'Email':
-              return ValidationCheck.checkEmail(value!);
+              return AppValidationCheck.checkEmail(value!);
             case 'Password':
-              return ValidationCheck.checkPassword(value!);
+              return AppValidationCheck.checkPassword(value!);
             case 'Confirm Password':
-              return ValidationCheck.checkConfirmPassword(
+              return AppValidationCheck.checkConfirmPassword(
                 value!,
                 controller[authItems.indexOf('Password')].text,
               );

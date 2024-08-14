@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension SpacingList on List<Widget> {
+extension AppSpacingList on List<Widget> {
   List<Widget> withSpacing(
     double spacing, {
     bool isVertical = true,

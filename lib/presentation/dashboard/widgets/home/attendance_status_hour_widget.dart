@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_constant.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class AttendanceHourStatusWidget extends StatelessWidget {
   const AttendanceHourStatusWidget({

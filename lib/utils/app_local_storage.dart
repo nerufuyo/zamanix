@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LocalStorage {
+class AppLocalStorage {
   final _storage = SharedPreferences.getInstance();
 
   Future<void> writeData(String key, dynamic value) async {

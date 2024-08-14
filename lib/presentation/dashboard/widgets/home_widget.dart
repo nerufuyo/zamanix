@@ -8,7 +8,7 @@ import 'package:zamanix/presentation/dashboard/widgets/home/attendance_button_wi
 import 'package:zamanix/presentation/dashboard/widgets/home/attendance_status_hour_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/home/time_shift_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/home/time_widget.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});

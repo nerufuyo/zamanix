@@ -5,7 +5,9 @@ import 'package:zamanix/config/app_theme.dart';
 class ProfilePictureWidget extends StatelessWidget {
   const ProfilePictureWidget({
     super.key,
+    required this.isMale,
   });
+  final bool isMale;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class ProfilePictureWidget extends StatelessWidget {
       radius: 60,
       onTap: () {},
       child: Container(
-        width: 120,
-        height: 120,
+        width: 100,
+        height: 100,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -25,8 +27,10 @@ class ProfilePictureWidget extends StatelessWidget {
             ),
           ],
           borderRadius: BorderRadius.circular(60),
-          image: const DecorationImage(
-            image: AssetImage(AppImage.appFemaleProfilePicture),
+          image: DecorationImage(
+            image: AssetImage(isMale
+                ? AppImage.appMaleProfilePicture
+                : AppImage.appFemaleProfilePicture),
             fit: BoxFit.cover,
           ),
         ),
