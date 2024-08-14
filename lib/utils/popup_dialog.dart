@@ -54,4 +54,68 @@ class PopUpDialog {
       _isDialogShowing = false;
     }
   }
+
+  static void showConfirmationDialog(
+    BuildContext context,
+    String lottieAsset,
+    String message,
+    Function onYes,
+    Function onNo,
+  ) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset(
+              lottieAsset,
+              repeat: false,
+              width: 120,
+            ),
+            Text(
+              message,
+              style: AppTextStyle.h4,
+              textAlign: TextAlign.center,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                2,
+                (index) => SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      if (index == 0) {
+                        onNo();
+                      } else {
+                        onYes();
+                      }
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor:
+                          index == 0 ? AppColor.textDark : AppColor.error,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      index == 0 ? 'No' : 'Yes',
+                      style: AppTextStyle.body2.copyWith(
+                        color:
+                            index == 0 ? AppColor.textLight : AppColor.textDark,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ].withSpacing(4),
+        ),
+      ),
+    );
+  }
 }

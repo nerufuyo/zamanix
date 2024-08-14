@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
+import 'package:zamanix/presentation/dashboard/widgets/profile/menu_information_app_widget.dart.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/profile_picture_widget.dart';
 import 'package:zamanix/utils/constant.dart';
 import 'package:zamanix/utils/spacing_list.dart';
@@ -97,40 +98,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     ),
                   ),
                   Divider(
-                      color: AppColor.accent.withOpacity(.25), thickness: 2),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 8,
-                    ),
-                    itemCount: optionItemMenus.length,
-                    itemBuilder: (context, index) => ListTile(
-                      dense: true,
-                      tileColor:
-                          index == 0 ? AppColor.textDark : AppColor.error,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      leading: Image.asset(
-                        optionItemMenus[index]['icon'].toString(),
-                        width: 20,
-                      ),
-                      title: Text(
-                        optionItemMenus[index]['label'].toString(),
-                        style: AppTextStyle.body2.copyWith(
-                          color: index == 0 ? AppColor.textLight : Colors.white,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        size: 16,
-                        color: index == 0 ? AppColor.accent : Colors.white,
-                      ),
-                      onTap: () {},
-                    ),
+                    color: AppColor.accent.withOpacity(.25),
+                    thickness: 2,
                   ),
+                  const MenuInformationAppWidget()
                 ].withSpacing(20),
               ),
             ),
