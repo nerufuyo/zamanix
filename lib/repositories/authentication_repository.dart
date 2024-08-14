@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/repositories/models/user_model.dart';
-import 'package:zamanix/utils/local_storage.dart';
-import 'package:zamanix/utils/secure_storage.dart';
+import 'package:zamanix/utils/app_local_storage.dart';
+import 'package:zamanix/utils/app_secure_storage.dart';
 
 abstract class AuthenticationRepository {
   Future<UserModel> signInWithEmailAndPassword(String email, String password);
@@ -83,10 +83,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final UserModel userModel = UserModel.fromJson(userDoc.data()!);
 
       log('AUTH: SIGN IN SUCCESS! | DETAIL: $user');
-      await SecureStorage()
+      await AppSecureStorage()
           .replaceSecureData('uid', user.uid)
           .then((value) => log('AUTH: UID SAVED! | DETAIL: $user.uid'));
-      await LocalStorage()
+      await AppLocalStorage()
           .writeData('profile', userModel.toJson())
           .then((value) => log('AUTH: PROFILE SAVED!'));
       return userModel;

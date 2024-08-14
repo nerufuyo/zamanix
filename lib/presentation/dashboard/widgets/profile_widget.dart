@@ -6,8 +6,8 @@ import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/menu_information_app_widget.dart.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/profile_picture_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile/profile_quick_info_widget.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_constant.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({super.key});

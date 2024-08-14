@@ -40,8 +40,8 @@ class DotWidget extends StatelessWidget {
   }
 }
 
-class DotBackground extends StatelessWidget {
-  const DotBackground({super.key});
+class AppCustomBackground extends StatelessWidget {
+  const AppCustomBackground({super.key});
 
   @override
   Widget build(BuildContext context) {

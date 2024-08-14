@@ -10,15 +10,15 @@ import 'package:zamanix/presentation/dashboard/bloc/timezone/timezone_bloc.dart'
 import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
 import 'package:zamanix/repositories/authentication_repository.dart';
 import 'package:zamanix/repositories/user_repository.dart';
-import 'package:zamanix/utils/local_storage.dart';
-import 'package:zamanix/utils/location_service.dart';
-import 'package:zamanix/utils/timezone.dart';
+import 'package:zamanix/utils/app_local_storage.dart';
+import 'package:zamanix/utils/app_location_service.dart';
+import 'package:zamanix/utils/app_timezone.dart';
 
 final GetIt getIt = GetIt.instance;
 final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 final FirebaseFirestore db = FirebaseFirestore.instance;
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
-final LocalStorage localStorage = LocalStorage();
+final AppLocalStorage localStorage = AppLocalStorage();
 
 Future<void> setup() async {
   await _initializeFirebase();
@@ -35,7 +35,7 @@ Future<void> _initializeFirebase() async {
   getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
   getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
   getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
-  getIt.registerSingleton<LocalStorage>(LocalStorage());
+  getIt.registerSingleton<AppLocalStorage>(AppLocalStorage());
 }
 
 void _injectDependency() {
@@ -43,12 +43,12 @@ void _injectDependency() {
   getIt
     ..registerLazySingleton<AuthenticationRepository>(
         () => AuthenticationRepositoryImpl())
-    ..registerLazySingleton<LocationService>(() => LocationService())
-    ..registerLazySingleton<Timezone>(() => Timezone())
+    ..registerLazySingleton<AppLocationService>(() => AppLocationService())
+    ..registerLazySingleton<AppTimezone>(() => AppTimezone())
     ..registerLazySingleton<UserRepository>(() => UserRepositoryImpl())
     ..registerFactory(
         () => AuthenticationBloc(getIt<AuthenticationRepository>()))
-    ..registerFactory(() => LocationBloc(getIt<LocationService>()))
+    ..registerFactory(() => LocationBloc(getIt<AppLocationService>()))
     ..registerFactory(() => TimezoneBloc())
     ..registerFactory(() => UserBloc(getIt<UserRepository>()));
 }

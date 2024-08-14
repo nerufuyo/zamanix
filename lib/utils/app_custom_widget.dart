@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
-class PopUpDialog {
+class AppCustomWidget {
   static bool _isDialogShowing = false;
 
+  // Show a pop-up dialog with a Lottie animation
   static void showAnimatedPopUpDialog(
     BuildContext context,
     String lottieAsset,
@@ -48,13 +50,7 @@ class PopUpDialog {
     });
   }
 
-  static void closeDialog(BuildContext context) {
-    if (_isDialogShowing) {
-      Navigator.of(context).pop();
-      _isDialogShowing = false;
-    }
-  }
-
+  // Show a confirmation dialog with a Lottie animation
   static void showConfirmationDialog(
     BuildContext context,
     String lottieAsset,
@@ -115,6 +111,38 @@ class PopUpDialog {
             ),
           ].withSpacing(4),
         ),
+      ),
+    );
+  }
+
+  // Close the dialog
+  static void closeDialog(BuildContext context) {
+    if (_isDialogShowing) {
+      Navigator.of(context).pop();
+      _isDialogShowing = false;
+    }
+  }
+
+  // Show a maintenance screen
+  Widget buildMaintenanceScreen() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 16,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          LottieBuilder.asset(AppAnimation.appMaintenanceAnimation),
+          const Text('Under Maintenance!', style: AppTextStyle.h3),
+          Text(
+            'We are currently under maintenance. Please check back later.',
+            style: AppTextStyle.body2.copyWith(
+              color: AppColor.textLight,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ].withSpacing(16),
       ),
     );
   }

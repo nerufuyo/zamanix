@@ -10,10 +10,10 @@ import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dar
 import 'package:zamanix/presentation/authentication/widgets/login_widget.dart';
 import 'package:zamanix/presentation/authentication/widgets/option_widget.dart';
 import 'package:zamanix/presentation/authentication/widgets/register_widget.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/popup_dialog.dart';
-import 'package:zamanix/utils/secure_storage.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_custom_widget.dart';
+import 'package:zamanix/utils/app_constant.dart';
+import 'package:zamanix/utils/app_secure_storage.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({super.key});
@@ -33,7 +33,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   bool isRememberMe = false;
 
   void _loadRememberMe() {
-    SecureStorage().readSecureDataList('remember_me').then(
+    AppSecureStorage().readSecureDataList('remember_me').then(
       (value) {
         _controllers[1].text = value[0];
         _controllers[2].text = value[1];
@@ -56,11 +56,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {
             if (state is AuthenticationInitial) {
-              PopUpDialog.closeDialog(context);
+              AppCustomWidget.closeDialog(context);
             }
 
             if (state is AuthenticationLoading) {
-              PopUpDialog.showAnimatedPopUpDialog(
+              AppCustomWidget.showAnimatedPopUpDialog(
                 context,
                 AppAnimation.appLoadingAnimation,
                 isRegister ? 'Registering...' : 'Logging in...',
@@ -68,18 +68,18 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             }
 
             if (state is AuthenticationSuccess) {
-              PopUpDialog.closeDialog(context);
+              AppCustomWidget.closeDialog(context);
               Future.delayed(
                 const Duration(seconds: 3),
                 () {
-                  PopUpDialog.closeDialog(context);
+                  AppCustomWidget.closeDialog(context);
                   if (!isRegister) {
                     isRememberMe
-                        ? SecureStorage().writeSecureDataList(
+                        ? AppSecureStorage().writeSecureDataList(
                             'remember_me',
                             [_controllers[1].text, _controllers[2].text],
                           )
-                        : SecureStorage().deleteSecureData('remember_me');
+                        : AppSecureStorage().deleteSecureData('remember_me');
 
                     AppRoute.navigateTo(context, AppRoute.dashboard);
                   } else {
@@ -87,7 +87,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   }
                 },
               );
-              PopUpDialog.showAnimatedPopUpDialog(
+              AppCustomWidget.showAnimatedPopUpDialog(
                 context,
                 AppAnimation.appSuccessAnimation,
                 isRegister ? 'Registration successful!' : 'Login successful!',
@@ -95,12 +95,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             }
 
             if (state is AuthenticationFailure) {
-              PopUpDialog.closeDialog(context);
+              AppCustomWidget.closeDialog(context);
               Future.delayed(
                 const Duration(seconds: 2),
-                () => PopUpDialog.closeDialog(context),
+                () => AppCustomWidget.closeDialog(context),
               );
-              PopUpDialog.showAnimatedPopUpDialog(
+              AppCustomWidget.showAnimatedPopUpDialog(
                 context,
                 AppAnimation.appFailureAnimation,
                 state.error,

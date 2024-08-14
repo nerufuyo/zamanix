@@ -4,8 +4,8 @@ import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_route.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/popup_dialog.dart';
+import 'package:zamanix/utils/app_custom_widget.dart';
+import 'package:zamanix/utils/app_constant.dart';
 
 class MenuInformationAppWidget extends StatelessWidget {
   const MenuInformationAppWidget({super.key});
@@ -45,7 +45,7 @@ class MenuInformationAppWidget extends StatelessWidget {
           if (index == 0) {
             // Navigator.pushNamed(context, optionItemMenus[index]['route'].toString());
           } else {
-            PopUpDialog.showConfirmationDialog(
+            AppCustomWidget.showConfirmationDialog(
               context,
               AppAnimation.appWarningAnimation,
               'Are you sure you want to sign out?',
@@ -53,7 +53,7 @@ class MenuInformationAppWidget extends StatelessWidget {
                 context.read<AuthenticationBloc>().add(SignOut());
                 AppRoute.navigateTo(context, AppRoute.auth);
               },
-              () => PopUpDialog.closeDialog(context),
+              () => AppCustomWidget.closeDialog(context),
             );
           }
         },

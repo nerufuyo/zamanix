@@ -34,9 +34,9 @@ class AppBarForm extends StatelessWidget {
               ? InkWell(
                   onTap: () {
                     if (isDataEmpty) {
-                      onAdd!();
+                      onAdd != null ? onAdd!() : null;
                     } else {
-                      onSave!();
+                      onSave != null ? onSave!() : null;
                     }
                   },
                   child: Text(

@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-class Timezone {
+class AppTimezone {
   static String getRealTime(String country) {
     tz.initializeTimeZones();
     final location = tz.getLocation(country);

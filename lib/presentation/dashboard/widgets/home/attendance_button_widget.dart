@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/spacing_list.dart';
+import 'package:zamanix/utils/app_spacing_list.dart';
 
 class AttendanceButtonWidget extends StatelessWidget {
   const AttendanceButtonWidget({

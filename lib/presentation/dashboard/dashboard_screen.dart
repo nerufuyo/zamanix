@@ -5,7 +5,7 @@ import 'package:zamanix/presentation/dashboard/widgets/attendance_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/home_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/request_widget.dart';
-import 'package:zamanix/utils/dot_background.dart';
+import 'package:zamanix/utils/app_custom_background.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Scaffold(
         body: Stack(
           children: [
-            const DotBackground(),
+            const AppCustomBackground(),
             widgetOptions.elementAt(selectedIndex),
           ],
         ),
