@@ -42,3 +42,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Ignore iOS Google Maps API Key
+ios/Runner/GoogleMapsAPIKey.plist
+
+# Ignore Android Google Maps API Key
+android/app/src/main/res/values/google_maps_api_key.xml
