@@ -146,4 +146,36 @@ class AppCustomWidget {
       ),
     );
   }
+
+  Widget buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    String? Function(String?)? validator,
+    bool? enabled,
+  }) {
+    return TextFormField(
+      controller: controller,
+      enabled: enabled ?? true,
+      decoration: InputDecoration(
+        errorStyle: AppTextStyle.body3.copyWith(color: AppColor.error),
+        labelText: labelText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColor.accent),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColor.error),
+        ),
+      ),
+      validator: validator,
+    );
+  }
 }

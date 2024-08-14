@@ -77,3 +77,16 @@ final optionItemMenus = [
     'label': 'Sign Out',
   },
 ];
+
+final List editUserItems = [
+  'Full Name',
+  'Email',
+  'Mobile Phone',
+  'Gender',
+  'Birth of Date',
+  'Blood Type',
+  'Marital Status',
+  'Address',
+  'NIK',
+  'Passport',
+];
