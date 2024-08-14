@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_route.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/authentication/bloc/authentication_bloc.dart';
 import 'package:zamanix/utils/constant.dart';
 import 'package:zamanix/utils/popup_dialog.dart';
-import 'package:zamanix/utils/spacing_list.dart';
 
 class MenuInformationAppWidget extends StatelessWidget {
   const MenuInformationAppWidget({super.key});

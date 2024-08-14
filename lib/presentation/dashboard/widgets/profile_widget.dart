@@ -56,16 +56,30 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 children: [
                   ProfilePictureWidget(isMale: isMale),
                   Column(
-                    children: List.generate(
-                      2,
-                      (index) => Text(
-                        index == 0
-                            ? userModel?.fullname ?? 'Employee Name'
-                            : userModel?.employment?.jobPosition ?? 'Position',
-                        style:
-                            index == 0 ? AppTextStyle.h3 : AppTextStyle.body2,
+                    children: [
+                      Text(
+                        userModel?.fullname ?? '',
+                        style: AppTextStyle.h5.copyWith(
+                          color: AppColor.textLight,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                      Text(
+                        userModel?.employment?.jobPosition ?? '',
+                        style: AppTextStyle.body2.copyWith(
+                          color: AppColor.textLight,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Edit Profile',
+                          style: AppTextStyle.body2.copyWith(
+                            color: AppColor.info,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   ListView.separated(
                     shrinkWrap: true,
@@ -102,7 +116,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     thickness: 2,
                   ),
                   const MenuInformationAppWidget()
-                ].withSpacing(20),
+                ].withSpacing(16),
               ),
             ),
           ),
