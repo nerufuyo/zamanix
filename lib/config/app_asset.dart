@@ -56,4 +56,6 @@ class AppAnimation {
       'assets/animations/app_failure_animation.json';
   static const String appWarningAnimation =
       'assets/animations/app_warning_animation.json';
+  static const String appMaintenanceAnimation =
+      'assets/animations/app_maintenance_animation.json';
 }

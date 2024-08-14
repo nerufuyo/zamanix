@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zamanix/config/app_route.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/repositories/models/user_model.dart';
 
@@ -28,7 +29,7 @@ class ProfileQuickInfoWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => AppRoute.navigateTo(context, AppRoute.editProfile),
           child: Text(
             'Edit Profile',
             style: AppTextStyle.body2.copyWith(

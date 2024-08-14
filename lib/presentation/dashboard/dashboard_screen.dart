@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/presentation/dashboard/widgets/bottom_navigation_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/employee_widget.dart';
-import 'package:zamanix/presentation/dashboard/widgets/home/attendance_widget.dart';
+import 'package:zamanix/presentation/dashboard/widgets/attendance_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/home_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/profile_widget.dart';
 import 'package:zamanix/presentation/dashboard/widgets/request_widget.dart';

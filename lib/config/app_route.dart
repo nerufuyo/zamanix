@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zamanix/presentation/authentication/authentication_screen.dart';
 import 'package:zamanix/presentation/dashboard/attendance_verification_screen.dart';
 import 'package:zamanix/presentation/dashboard/dashboard_screen.dart';
+import 'package:zamanix/presentation/dashboard/edit_profile_screen.dart';
 import 'package:zamanix/presentation/empty/empty_screen.dart';
 import 'package:zamanix/presentation/splash/splash_screen.dart';
 
@@ -10,6 +11,7 @@ class AppRoute {
   static const String auth = '/auth';
   static const String dashboard = '/dashboard';
   static const String attendanceVerification = '/attendanceVerification';
+  static const String editProfile = '/editProfile';
   static const String empty = '/empty';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -24,6 +26,9 @@ class AppRoute {
         return MaterialPageRoute(
           builder: (_) => const AttendanceVerificationScreen(),
         );
+      case editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+
       default:
         return MaterialPageRoute(builder: (_) => const EmptyScreen());
     }
