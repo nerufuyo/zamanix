@@ -32,3 +32,9 @@ Runner/GeneratedPluginRegistrant.*
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+
+# Ignore iOS Google Maps API Key
+Runner/GoogleMapsAPIKey.plist
+
+# Include template file
+!Runner/GoogleMapsAPIKey.plist.template

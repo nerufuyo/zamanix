@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/repositories/models/user_model.dart';
-import 'package:zamanix/utils/local_storage.dart';
-import 'package:zamanix/utils/secure_storage.dart';
+import 'package:zamanix/utils/app_local_storage.dart';
+import 'package:zamanix/utils/app_secure_storage.dart';
 
 abstract class AuthenticationRepository {
   Future<UserModel> signInWithEmailAndPassword(String email, String password);
@@ -16,7 +16,6 @@ abstract class AuthenticationRepository {
   );
   Future<void> signOut();
   Future<bool> isSignedIn();
-  Future<UserModel> getUser();
 }
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -84,10 +83,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final UserModel userModel = UserModel.fromJson(userDoc.data()!);
 
       log('AUTH: SIGN IN SUCCESS! | DETAIL: $user');
-      await SecureStorage()
+      await AppSecureStorage()
           .replaceSecureData('uid', user.uid)
           .then((value) => log('AUTH: UID SAVED! | DETAIL: $user.uid'));
-      await LocalStorage()
+      await AppLocalStorage()
           .writeData('profile', userModel.toJson())
           .then((value) => log('AUTH: PROFILE SAVED!'));
       return userModel;
@@ -132,26 +131,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     } catch (e) {
       log('AUTH: IS SIGNED IN ERROR! | DETAIL: $e');
       return false;
-    }
-  }
-
-  @override
-  Future<UserModel> getUser() async {
-    try {
-      final currentUser = _firebaseAuth.currentUser;
-      if (currentUser != null) {
-        final DocumentSnapshot<Map<String, dynamic>> userDoc = await _db
-            .collection(AppDatabaseCollections.users)
-            .doc(currentUser.uid)
-            .get();
-        final UserModel userModel = UserModel.fromJson(userDoc.data()!);
-        return userModel;
-      } else {
-        throw Exception('No user found!');
-      }
-    } catch (e) {
-      log('AUTH: GET USER ERROR! | DETAIL: $e');
-      throw Exception(e);
     }
   }
 }

@@ -11,3 +11,9 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+# Ignore Android Google Maps API Key
+app/src/main/res/values/google_maps_api_key.xml
+
+# Include template file
+!app/src/main/res/values/google_maps_api_key.xml.template

@@ -28,3 +28,12 @@ final class AuthenticationFailure extends AuthenticationState {
   @override
   List<Object> get props => [error];
 }
+
+final class AuthenticationAuthenticated extends AuthenticationState {
+  final bool message;
+
+  const AuthenticationAuthenticated({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

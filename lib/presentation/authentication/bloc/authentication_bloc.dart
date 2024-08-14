@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:zamanix/repositories/authentication_repository.dart';
@@ -46,6 +48,7 @@ class AuthenticationBloc
       emit(AuthenticationLoading());
       try {
         await _authenticationRepository.signOut();
+        emit(const AuthenticationAuthenticated(message: false));
         emit(AuthenticationInitial());
       } catch (e) {
         emit(AuthenticationFailure(error: e.toString()));
@@ -57,9 +60,9 @@ class AuthenticationBloc
       emit(AuthenticationLoading());
       try {
         final isSignedIn = await _authenticationRepository.isSignedIn();
+        log('AUTH: IS SIGNED IN? | DETAIL: $isSignedIn');
         if (isSignedIn) {
-          final user = await _authenticationRepository.getUser();
-          emit(AuthenticationSuccess(user: user));
+          emit(const AuthenticationAuthenticated(message: true));
         } else {
           emit(AuthenticationInitial());
         }

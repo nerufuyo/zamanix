@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureStorage {
+class AppSecureStorage {
   final _storage = const FlutterSecureStorage();
 
   Future<void> writeSecureData(String key, dynamic value) async {
@@ -22,5 +22,14 @@ class SecureStorage {
   Future<void> replaceSecureData(String key, dynamic value) async {
     await _storage.delete(key: key);
     await _storage.write(key: key, value: value);
+  }
+
+  Future<void> writeSecureDataList(String key, List<String> value) async {
+    await _storage.write(key: key, value: value.join(','));
+  }
+
+  Future<List<String>> readSecureDataList(String key) async {
+    final String? value = await _storage.read(key: key);
+    return value!.split(',');
   }
 }

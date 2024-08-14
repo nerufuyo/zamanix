@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zamanix/config/app_theme.dart';
-import 'package:zamanix/utils/constant.dart';
-import 'package:zamanix/utils/validation_check.dart';
+import 'package:zamanix/utils/app_constant.dart';
+import 'package:zamanix/utils/app_validation_check.dart';
 
 class LoginWidget extends StatelessWidget {
   final List<TextEditingController> controller;
@@ -46,8 +46,8 @@ class LoginWidget extends StatelessWidget {
         ),
         obscureText: filteredAuthItems[index] == 'Password',
         validator: (value) => filteredAuthItems[index] == 'Email'
-            ? ValidationCheck.checkEmail(value!)
-            : ValidationCheck.checkPassword(value!),
+            ? AppValidationCheck.checkEmail(value!)
+            : AppValidationCheck.checkPassword(value!),
       ),
     );
   }
