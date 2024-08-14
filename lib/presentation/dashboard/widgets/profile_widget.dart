@@ -37,6 +37,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           );
         }
 
+        bool isMale = userModel?.gender == 'Male';
+
         return Skeletonizer(
           enabled: state is UserLoading || state is UserInitial,
           child: Container(
@@ -51,7 +53,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const ProfilePictureWidget(),
+                  ProfilePictureWidget(isMale: isMale),
                   Column(
                     children: List.generate(
                       2,
