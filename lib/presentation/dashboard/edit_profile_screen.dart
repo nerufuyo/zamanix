@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:zamanix/config/app_asset.dart';
 import 'package:zamanix/config/app_theme.dart';
 import 'package:zamanix/presentation/dashboard/bloc/user/user_bloc.dart';
 import 'package:zamanix/presentation/dashboard/widgets/appbar_form_widget.dart';
@@ -103,11 +104,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             if (!isEditEnabled) {
-              setState(() {
-                isEditEnabled = true;
-              });
+              setState(() => isEditEnabled = true);
             } else {
               if (_formKey.currentState!.validate()) {
                 final user = UserModel(
@@ -122,10 +121,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   nik: _controllers[8].text,
                   passport: _controllers[9].text,
                 );
-                context.read<UserBloc>().add(UpdateUser(user));
-                setState(() {
-                  isEditEnabled = false;
-                });
+
+                AppCustomWidget.showConfirmationDialog(
+                  context,
+                  AppAnimation.appWarningAnimation,
+                  'Are you sure you want to save the changes?',
+                  () {
+                    context.read<UserBloc>().add(UpdateUser(user));
+                    AppCustomWidget.closeDialog(context);
+                    setState(() => isEditEnabled = false);
+                  },
+                  () => AppCustomWidget.closeDialog(context),
+                );
               }
             }
           },
