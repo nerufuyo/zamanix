@@ -23,6 +23,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     context.read<UserBloc>().add(GetUser());
   }
 
+  // TODO: Implement all of features in this screen
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
