@@ -38,6 +38,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         preferredSize: Size.fromHeight(56),
         child: AppBarForm(title: 'Edit Profile'),
       ),
+
+      //TODO: Edit spesific but still update all of values
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           bool userLoaded = state is UserSuccess;
