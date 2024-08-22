@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/repositories/models/user_model.dart';
 
@@ -14,10 +13,11 @@ abstract class UserRepository {
 class UserRepositoryImpl implements UserRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final Logger _logger = Logger();
 
   @override
   Future<UserModel> getUser() async {
-    log('USER: GET USER STARTED!');
+    _logger.i('GET USER STARTED');
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser != null) {
@@ -27,62 +27,62 @@ class UserRepositoryImpl implements UserRepository {
             .get();
 
         final UserModel userModel = UserModel.fromJson(userDoc.data()!);
-        log('USER: GET USER SUCCESS! | DETAIL: $userModel');
+        _logger.i('GET USER SUCCESS | DETAIL: $userModel');
         return userModel;
       } else {
-        log('USER: GET USER ERROR! | DETAIL: No user found!');
+        _logger.e('GET USER ERROR | No user found');
         throw Exception('No user found!');
       }
     } catch (e) {
-      log('USER: GET USER ERROR! | DETAIL: $e');
+      _logger.e('GET USER ERROR', error: e);
       throw Exception(e);
     }
   }
 
   @override
   Future<UserModel> updateUser(UserModel user) async {
-    log('USER: UPDATE USER STARTED!');
+    _logger.i('UPDATE USER STARTED');
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser != null) {
         await _db
             .collection(AppDatabaseCollections.users)
             .doc(currentUser.uid)
-            .update(user.toJson())
-            .then((value) => log('USER: UPDATE USER SUCCESS! | DETAIL: $user'));
+            .update(user.toJson());
+        _logger.i('UPDATE USER SUCCESS | DETAIL: $user');
         return user;
       } else {
-        log('USER: UPDATE USER ERROR! | DETAIL: No user found!');
+        _logger.e('UPDATE USER ERROR | No user found');
         throw Exception('No user found!');
       }
     } catch (e) {
-      log('USER: UPDATE USER ERROR! | DETAIL: $e');
+      _logger.e('UPDATE USER ERROR', error: e);
       throw Exception(e);
     }
   }
 
   @override
   Future<UserModel> deleteUser(UserModel user) async {
-    log('USER: DELETE USER STARTED!');
+    _logger.i('DELETE USER STARTED');
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser != null) {
         await _db
             .collection(AppDatabaseCollections.users)
             .doc(currentUser.uid)
-            .delete()
-            .then((value) => log('USER: DELETE DATABASE USER SUCCESS!'));
-        await currentUser
-            .delete()
-            .then((value) => log('USER: DELETE USER SUCCESS!'));
+            .delete();
+        _logger.i('DELETE DATABASE USER SUCCESS');
+
+        await currentUser.delete();
+        _logger.i('DELETE USER SUCCESS');
 
         return user;
       } else {
-        log('USER: DELETE USER ERROR! | DETAIL: No user found!');
+        _logger.e('DELETE USER ERROR | No user found');
         throw Exception('No user found!');
       }
     } catch (e) {
-      log('USER: DELETE USER ERROR! | DETAIL: $e');
+      _logger.e('DELETE USER ERROR', error: e);
       throw Exception(e);
     }
   }
