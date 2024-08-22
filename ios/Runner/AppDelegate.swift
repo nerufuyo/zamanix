@@ -14,7 +14,7 @@ import GoogleMaps
        let config = NSDictionary(contentsOfFile: path),
        let apiKey = config["GoogleMapsAPIKey"] as? String {
 
-      GMSServices.setMetalRendererEnabled(false)
+      GMSServices.setMetalRendererEnabled(true)
       GMSServices.provideAPIKey(apiKey)
       print("Google Maps API key loaded successfully")
     } else {

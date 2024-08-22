@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 import 'package:zamanix/config/app_config.dart';
 import 'package:zamanix/repositories/models/user_model.dart';
 import 'package:zamanix/utils/app_local_storage.dart';
@@ -21,6 +20,7 @@ abstract class AuthenticationRepository {
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final Logger _logger = Logger();
 
   @override
   Future<UserModel> signUpWithEmailAndPassword(
@@ -29,7 +29,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     String password,
   ) async {
     try {
-      log('AUTH: START SIGN UP!');
+      _logger.i('START SIGN UP');
       final UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -41,26 +41,19 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         await _db.collection(AppDatabaseCollections.users).doc(user.uid).set({
           'email': email,
           'fullname': fullname,
-        }).then((value) => log('AUTH: USER CREATED! | DETAIL: $user'));
+        });
+        _logger.i('USER CREATED | UID: ${user.uid}');
       } else {
-        log('AUTH: USER ALREADY EXISTS!');
+        _logger.i('USER ALREADY EXISTS');
       }
 
-      log('AUTH: SIGN UP SUCCESS!');
-      return UserModel(
-        email: email,
-        fullname: fullname,
-      );
+      _logger.i('SIGN UP SUCCESS');
+      return UserModel(email: email, fullname: fullname);
     } on FirebaseAuthException catch (e) {
-      log('AUTH: SIGN UP ERROR! | DETAIL: ${e.message}');
-      if (e.code == 'weak-password') {
-        throw Exception('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        throw Exception('The account already exists for that email.');
-      }
-      throw Exception(e.message);
+      _logger.e('SIGN UP ERROR', error: e);
+      throw _handleAuthException(e);
     } catch (e) {
-      log('AUTH: SIGN UP ERROR! | DETAIL: $e');
+      _logger.e('SIGN UP ERROR', error: e);
       throw Exception(e);
     }
   }
@@ -69,7 +62,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<UserModel> signInWithEmailAndPassword(
       String email, String password) async {
     try {
-      log('AUTH: START SIGN IN!');
+      _logger.i('START SIGN IN');
       final UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -82,24 +75,18 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           .get();
       final UserModel userModel = UserModel.fromJson(userDoc.data()!);
 
-      log('AUTH: SIGN IN SUCCESS! | DETAIL: $user');
-      await AppSecureStorage()
-          .replaceSecureData('uid', user.uid)
-          .then((value) => log('AUTH: UID SAVED! | DETAIL: $user.uid'));
-      await AppLocalStorage()
-          .writeData('profile', userModel.toJson())
-          .then((value) => log('AUTH: PROFILE SAVED!'));
+      await AppSecureStorage().replaceSecureData('uid', user.uid);
+      _logger.i('UID SAVED | UID: ${user.uid}');
+      await AppLocalStorage().writeData('profile', userModel.toJson());
+      _logger.i('PROFILE SAVED');
+
+      _logger.i('SIGN IN SUCCESS');
       return userModel;
     } on FirebaseAuthException catch (e) {
-      log('AUTH: SIGN IN ERROR! | DETAIL: ${e.message}');
-      if (e.code == 'user-not-found') {
-        throw Exception('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        throw Exception('Wrong password provided for that user.');
-      }
-      throw Exception(e.message);
+      _logger.e('SIGN IN ERROR', error: e);
+      throw _handleAuthException(e);
     } catch (e) {
-      log('AUTH: SIGN IN ERROR! | DETAIL: $e');
+      _logger.e('SIGN IN ERROR', error: e);
       throw Exception(e);
     }
   }
@@ -107,11 +94,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<void> signOut() async {
     try {
-      log('AUTH: START SIGN OUT!');
+      _logger.i('START SIGN OUT');
       await _firebaseAuth.signOut();
-      log('AUTH: SIGN OUT SUCCESS!');
+      _logger.i('SIGN OUT SUCCESS');
     } catch (e) {
-      log('AUTH: SIGN OUT ERROR! | DETAIL: $e');
+      _logger.e('SIGN OUT ERROR', error: e);
       throw Exception(e);
     }
   }
@@ -120,17 +107,32 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<bool> isSignedIn() async {
     try {
       final currentUser = _firebaseAuth.currentUser;
-      log('AUTH: START IS SIGNED IN!');
+      _logger.i('CHECK IS SIGNED IN');
       if (currentUser != null) {
-        log('AUTH: IS SIGNED IN SUCCESS! | DETAIL: $currentUser');
+        _logger.i('IS SIGNED IN SUCCESS | UID: ${currentUser.uid}');
         return true;
       } else {
-        log('AUTH: IS SIGNED IN FAILED! | DETAIL: No user found!');
+        _logger.i('IS SIGNED IN FAILED | No user found');
         return false;
       }
     } catch (e) {
-      log('AUTH: IS SIGNED IN ERROR! | DETAIL: $e');
+      _logger.e('IS SIGNED IN ERROR', error: e);
       return false;
+    }
+  }
+
+  Exception _handleAuthException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'weak-password':
+        return Exception('The password provided is too weak.');
+      case 'email-already-in-use':
+        return Exception('The account already exists for that email.');
+      case 'user-not-found':
+        return Exception('No user found for that email.');
+      case 'wrong-password':
+        return Exception('Wrong password provided for that user.');
+      default:
+        return Exception(e.message);
     }
   }
 }
